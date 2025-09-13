@@ -13,10 +13,11 @@ use std::{
 pub struct PBOHandle {
     pub(crate) properties: HashMap<String, String>,
     pub(crate) version_header: BinaryHeader,
-    pub(crate) files: Vec<BinaryHeader>,
+    pub files: Vec<BinaryHeader>,
     pub checksum: Checksum,
-    pub(crate) handle: std::fs::File,
-    pub(crate) blob_start: u64,
+    pub handle: std::fs::File,
+    pub blob_start: u64,
+    pub length: u64,
 }
 
 impl PBOHandle {
@@ -60,10 +61,11 @@ impl PBOHandle {
 
         // Get the checksum
         let checksum = Checksum::read(&mut handle)?;
+        let length = handle.metadata()?.len();
 
         // We should be at the end of the file
         ensure!(
-            handle.stream_position()? == handle.metadata()?.len(),
+            handle.stream_position()? == length,
             "File is not at the end"
         );
 
@@ -74,6 +76,7 @@ impl PBOHandle {
             checksum,
             handle,
             blob_start,
+            length,
         })
     }
 }

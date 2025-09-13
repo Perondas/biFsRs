@@ -55,7 +55,7 @@ impl BIPrivateKey {
     }
 
     pub fn new(authority: Authority, length: u32) -> Result<Self, Error> {
-        let mut rng = OsRng::default();
+        let mut rng = OsRng;
 
         let mut key = RsaPrivateKey::new(&mut rng, length as usize)?;
 
@@ -135,9 +135,7 @@ impl TryFrom<BinaryBiPrivateKey> for BIPrivateKey {
 
 impl From<&BIPrivateKey> for BinaryBiPrivateKey {
     fn from(value: &BIPrivateKey) -> Self {
-        println!("Converting BIPrivateKey to BinaryBi, {:#?}", value.key.e());
-
-        let x = BinaryBiPrivateKey {
+        BinaryBiPrivateKey {
             authority: NullString::from(value.authority.clone().into_inner()),
             body_len: value.length / 16 * 9 + 20,
             sig_type: *b"RSA2",
@@ -150,11 +148,7 @@ impl From<&BIPrivateKey> for BinaryBiPrivateKey {
             dq: value.key.dq().unwrap().to_bytes_le(),
             qinv: value.key.qinv().unwrap().to_signed_bytes_le(),
             d: value.key.d().to_bytes_le(),
-        };
-
-        //println!("BinaryBiPrivateKey: {:#?}", x);
-
-        x
+        }
     }
 }
 
