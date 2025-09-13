@@ -1,0 +1,12 @@
+[package]
+name = "bi_fs_rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.98"
+rsa = "0.9.8"
+sha1 = "0.10.6"
+binrw = "0.15.0"
+nutype = "0.6.1"
+rand = "0.8.5"
