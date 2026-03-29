@@ -1,5 +1,6 @@
 use crate::keys::authority::Authority;
 use crate::keys::public_key::BIPublicKey;
+use crate::pbo::hashing::hash::PBOHash;
 use crate::{
     pbo::handle::PBOHandle,
     sign::{signature::BiSignature, version::BISignVersion},
@@ -8,11 +9,10 @@ use anyhow::{Context, Error, Result};
 use binrw::{BinRead, BinWrite, NullString};
 use rand::rngs::OsRng;
 use rsa::{
-    traits::{PrivateKeyParts, PublicKeyParts},
     BigUint, RsaPrivateKey,
+    traits::{PrivateKeyParts, PublicKeyParts},
 };
 use std::io::{Read, Seek, Write};
-use crate::pbo::hashing::hash::PBOHash;
 
 #[derive(Debug, Clone)]
 pub struct BIPrivateKey {
@@ -146,7 +146,7 @@ impl From<&BIPrivateKey> for BinaryBiPrivateKey {
             q: value.key.primes()[1].to_bytes_le(),
             dp: value.key.dp().unwrap().to_bytes_le(),
             dq: value.key.dq().unwrap().to_bytes_le(),
-            qinv: value.key.qinv().unwrap().to_signed_bytes_le(),
+            qinv: value.key.qinv().unwrap().to_bytes_le().1,
             d: value.key.d().to_bytes_le(),
         }
     }
