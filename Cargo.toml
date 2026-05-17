@@ -1,7 +1,14 @@
 [package]
 name = "bi_fs_rs"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
+authors = ["Perondas <thomas@perondas.dev>"]
+license = "GPL-3"
+description = "A Rust library for working with Arma 3 related file formats, such as PBO and BISIGN files."
+repository = "https://github.com/Perondas/bi_fs_rs"
+categories = ["file-formats", "utilities"]
+keywords = ["arma3", "pbo", "bisign", "file-formats"]
+readme = "README.md"
 
 [dependencies]
 anyhow = "1.0.98"
