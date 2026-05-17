@@ -6,7 +6,7 @@ authors = ["Perondas <thomas@perondas.dev>"]
 license = "GPL-3.0"
 description = "A Rust library for working with Arma 3 related file formats, such as PBO and BISIGN files."
 repository = "https://github.com/Perondas/bi_fs_rs"
-categories = ["file-formats", "utilities"]
+categories = ["filesystem", "game-development"]
 keywords = ["arma3", "pbo", "bisign", "file-formats"]
 readme = "README.md"
 
