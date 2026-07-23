@@ -7,7 +7,7 @@ use crate::{
 };
 use anyhow::{Context, Error, Result};
 use binrw::{BinRead, BinWrite, NullString};
-use rand::rngs::OsRng;
+use rand_core::OsRng;
 use rsa::{
     BigUint, RsaPrivateKey,
     traits::{PrivateKeyParts, PublicKeyParts},

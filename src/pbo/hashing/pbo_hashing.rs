@@ -1,7 +1,6 @@
 use std::io::{Read, Seek};
 use std::io::SeekFrom::Current;
-use rsa::signature::digest::Digest;
-use sha1::Sha1;
+use sha1::{Digest, Sha1};
 use crate::pbo::handle::PBOHandle;
 use crate::pbo::hashing::hash::{pad_hash, PBOHash};
 use crate::pbo::header::BinaryHeader;
